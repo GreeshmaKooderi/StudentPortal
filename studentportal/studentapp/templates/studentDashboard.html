@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+
+{% block footer %}
+
+<div class="container-fluid bg-danger text-light text-center">
+    <h2 class="py-5">ABC STUDENT PORTAL APP</h2>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3">
+            {{ message }}
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+
+        <div class="text-center">
+            <img src="{{ student.photo.url }}"
+                 width="150"
+                 height="150"
+                 class="rounded-circle">
+        </div>
+
+        <h2 class="text-center mt-3">
+            {{ student.name }}
+        </h2>
+
+        <table class="table table-bordered mt-4">
+            <tr>
+                <th>Standard</th>
+                <td>{{ student.standard }}</td>
+            </tr>
+
+            <tr>
+                <th>Date of Birth</th>
+                <td>{{ student.dob }}</td>
+            </tr>
+
+            <tr>
+                <th>Phone</th>
+                <td>{{ student.phone }}</td>
+            </tr>
+
+            <tr>
+                <th>Place</th>
+                <td>{{ student.place }}</td>
+            </tr>
+
+            <tr>
+                <th>Address</th>
+                <td>{{ student.address }}</td>
+            </tr>
+        </table>
+
+        <div class="text-center">
+
+            <a href="{% url 'editstudent' student.id %}"
+               class="btn btn-warning">
+               Edit
+            </a>
+
+            <a href="{% url 'confirmdelete' student.id %}"
+                class="btn btn-danger">
+                Delete Profile
+            </a>
+
+            <a href="{% url 'logout' %}"
+       class="btn btn-secondary">
+       Logout
+    </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

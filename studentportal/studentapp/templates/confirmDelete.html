@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+
+{% block footer %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4 text-center">
+
+        <h2 class="text-danger">
+            Delete Student Profile
+        </h2>
+
+        <hr>
+
+        <p>
+            Are you sure you want to delete
+            <strong>{{ student.name }}</strong>'s profile?
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="btn btn-danger">
+                Yes Delete
+            </button>
+
+            <a href="{% url 'dashboard' student.id %}"
+               class="btn btn-success">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
